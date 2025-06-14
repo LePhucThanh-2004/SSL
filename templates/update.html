@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Cập Nhật Công Việc{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">Cập Nhật Công Việc</h1>
+        <p class="text-muted">Chỉnh sửa thông tin công việc</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="task-form">
+                <form action="/update/{{task.id}}" method="POST">
+                    <div class="mb-3">
+                        <label for="content" class="form-label">
+                            <i class="fas fa-tasks"></i> Nội dung công việc
+                        </label>
+                        <input type="text" class="form-control" name="content" id="content" 
+                               value="{{ task.content }}" required>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Lưu Thay Đổi
+                        </button>
+                        <a href="/" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left"></i> Quay Lại
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

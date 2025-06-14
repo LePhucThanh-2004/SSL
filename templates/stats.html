@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block title %}Thống Kê{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">Thống Kê Công Việc</h1>
+        <p class="text-muted">Phân tích chi tiết về tiến độ công việc của bạn</p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Thống kê tổng quan -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">{{ total_tasks }}</div>
+            <div class="stat-label">Tổng Số Công Việc</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ pending_tasks }}</div>
+            <div class="stat-label">Đang Thực Hiện</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ completed_tasks }}</div>
+            <div class="stat-label">Đã Hoàn Thành</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ "%.1f"|format(completion_rate) }}%</div>
+            <div class="stat-label">Tỷ Lệ Hoàn Thành</div>
+        </div>
+    </div>
+
+    <!-- Biểu đồ -->
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Tỷ Lệ Hoàn Thành</h5>
+                    <canvas id="completionChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Công Việc Theo Ngày</h5>
+                    <canvas id="dailyTasksChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bảng chi tiết -->
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title">Chi Tiết Theo Ngày</h5>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Tổng Công Việc</th>
+                            <th>Đã Hoàn Thành</th>
+                            <th>Tỷ Lệ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for date, stats in tasks_by_date.items() %}
+                        <tr>
+                            <td>{{ date }}</td>
+                            <td>{{ stats.total }}</td>
+                            <td>{{ stats.completed }}</td>
+                            <td>{{ "%.1f"|format(stats.completed / stats.total * 100) }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Biểu đồ tròn thể hiện tỷ lệ hoàn thành
+    const completionCtx = document.getElementById('completionChart').getContext('2d');
+    new Chart(completionCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Đã Hoàn Thành', 'Đang Thực Hiện'],
+            datasets: [{
+                data: [{{ completed_tasks }}, {{ pending_tasks }}],
+                backgroundColor: ['#2ecc71', '#e74c3c']
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    // Biểu đồ cột thể hiện công việc theo ngày
+    const dailyTasksCtx = document.getElementById('dailyTasksChart').getContext('2d');
+    new Chart(dailyTasksCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for date in tasks_by_date.keys() %}'{{ date }}',{% endfor %}],
+            datasets: [{
+                label: 'Tổng Công Việc',
+                data: [{% for stats in tasks_by_date.values() %}{{ stats.total }},{% endfor %}],
+                backgroundColor: '#3498db'
+            }, {
+                label: 'Đã Hoàn Thành',
+                data: [{% for stats in tasks_by_date.values() %}{{ stats.completed }},{% endfor %}],
+                backgroundColor: '#2ecc71'
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+</script>
+{% endblock %} 

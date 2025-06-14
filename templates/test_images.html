@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Test Images{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Test Images</h2>
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Flask Logo</h4>
+            <img src="{{ url_for('static', filename='images/flask.png') }}" alt="Flask" class="img-fluid">
+            <img src="https://flask.palletsprojects.com/en/2.3.x/_static/flask-icon.png" alt="Flask Direct" class="img-fluid mt-2">
+        </div>
+        <div class="col-md-3">
+            <h4>Bootstrap Logo</h4>
+            <img src="{{ url_for('static', filename='images/bootstrap.png') }}" alt="Bootstrap" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+            <h4>Python Logo</h4>
+            <img src="{{ url_for('static', filename='images/python.png') }}" alt="Python" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+            <h4>SQLite Logo</h4>
+            <img src="{{ url_for('static', filename='images/sqlite.png') }}" alt="SQLite" class="img-fluid">
+        </div>
+    </div>
+</div>
+{% endblock %} 

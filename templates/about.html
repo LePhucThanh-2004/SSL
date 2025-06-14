@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Giới Thiệu{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">Giới Thiệu</h1>
+        <p class="text-muted">Tìm hiểu thêm về 64CLC Task Manager</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title h4 mb-4">Về Chúng Tôi</h2>
+                    <p class="card-text">
+                        <strong>Đề tài:</strong> Xây dựng Hệ thống Quản lý Công việc (Task Management System)<br><br>
+                        <strong>Mô tả:</strong> Đây là một ứng dụng web được phát triển bởi sinh viên lớp 64CLC, Trường Đại học Nha Trang. 
+                        Hệ thống giúp người dùng quản lý và theo dõi công việc một cách hiệu quả với các tính năng như:
+                    </p>
+                    <ul class="list-unstyled ms-4 mt-3">
+                        <li><i class="fas fa-check text-success me-2"></i> Quản lý công việc (thêm, sửa, xóa)</li>
+                        <li><i class="fas fa-check text-success me-2"></i> Theo dõi tiến độ và trạng thái</li>
+                        <li><i class="fas fa-check text-success me-2"></i> Thống kê và báo cáo</li>
+                        <li><i class="fas fa-check text-success me-2"></i> Hệ thống xác thực người dùng</li>
+                    </ul>
+                    <div class="text-center mt-4">
+                        <img src="{{ url_for('static', filename='images/team.jpg') }}" alt="Team" class="img-fluid rounded" style="max-width: 300px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h2 class="card-title h4 mb-4">Tính Năng Chính</h2>
+                    <div class="feature-list">
+                        <div class="feature-item mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                <h3 class="h5 mb-0">Quản Lý Task</h3>
+                            </div>
+                            <p class="text-muted ms-4">Dễ dàng thêm, sửa, xóa và theo dõi tiến độ công việc</p>
+                        </div>
+                        <div class="feature-item mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-chart-line text-primary me-2"></i>
+                                <h3 class="h5 mb-0">Thống Kê</h3>
+                            </div>
+                            <p class="text-muted ms-4">Xem báo cáo và phân tích về hiệu suất công việc</p>
+                        </div>
+                        <div class="feature-item mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-mobile-alt text-primary me-2"></i>
+                                <h3 class="h5 mb-0">Responsive Design</h3>
+                            </div>
+                            <p class="text-muted ms-4">Trải nghiệm mượt mà trên mọi thiết bị</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title h4 mb-4">Công Nghệ Sử Dụng</h2>
+                    <div class="row text-center">
+                        <div class="col-md-3 col-6 tech-logo-container">
+                            <img src="{{ url_for('static', filename='images/python.png') }}" 
+                                 onerror="this.src='https://www.python.org/static/community_logos/python-logo.png'"
+                                 alt="Python" class="tech-logo">
+                            <h4>Python</h4>
+                        </div>
+                        <div class="col-md-3 col-6 tech-logo-container">
+                            <img src="{{ url_for('static', filename='images/flask.png') }}"
+                                 onerror="this.src='https://cdn.worldvectorlogo.com/logos/flask.svg'"
+                                 alt="Flask" class="tech-logo">
+                            <h4>Flask</h4>
+                        </div>
+                        <div class="col-md-3 col-6 tech-logo-container">
+                            <img src="{{ url_for('static', filename='images/sqlite.png') }}"
+                                 onerror="this.src='https://www.sqlite.org/images/sqlite370_banner.gif'"
+                                 alt="SQLite" class="tech-logo">
+                            <h4>SQLite</h4>
+                        </div>
+                        <div class="col-md-3 col-6 tech-logo-container">
+                            <img src="{{ url_for('static', filename='images/bootstrap.png') }}"
+                                 onerror="this.src='https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg'"
+                                 alt="Bootstrap" class="tech-logo">
+                            <h4>Bootstrap</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Trang Chủ{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">Quản Lý Công Việc</h1>
+        <p class="text-muted">Theo dõi và quản lý công việc một cách hiệu quả</p>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Thống kê -->
+    <div class="stats-container">
+        <div class="stat-card">
+            <div class="stat-number">{{ total_tasks }}</div>
+            <div class="stat-label">Tổng Số Công Việc</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ pending_tasks }}</div>
+            <div class="stat-label">Đang Thực Hiện</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">{{ completed_tasks }}</div>
+            <div class="stat-label">Đã Hoàn Thành</div>
+        </div>
+    </div>
+
+    <!-- Form thêm công việc -->
+    <div class="task-form">
+        <form action="/" method="POST">
+            <div class="input-group">
+                <input type="text" name="content" class="form-control" placeholder="Nhập công việc mới..." required>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Thêm Công Việc
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Danh sách công việc -->
+    {% if tasks|length < 1 %}
+    <div class="alert alert-info" role="alert">
+        <i class="fas fa-info-circle"></i> Chưa có công việc nào. Hãy thêm công việc mới!
+    </div>
+    {% else %}
+    <div class="task-list">
+        {% for task in tasks %}
+        <div class="task-card">
+            <div class="task-header">
+                <div>
+                    <h5 class="task-title {% if task.status == 'completed' %}text-muted text-decoration-line-through{% endif %}">
+                        {{ task.content }}
+                    </h5>
+                    <div class="task-date">
+                        <i class="far fa-clock"></i> 
+                        Tạo lúc: {{ task.date_created.strftime('%H:%M:%S %d/%m/%Y') }}
+                    </div>
+                </div>
+                <div class="task-actions">
+                    <a href="/toggle/{{task.id}}" class="btn {% if task.status == 'completed' %}btn-success{% else %}btn-outline-success{% endif %}">
+                        <i class="fas {% if task.status == 'completed' %}fa-check-circle{% else %}fa-circle{% endif %}"></i>
+                    </a>
+                    <a href="/update/{{task.id}}" class="btn btn-warning">
+                        <i class="fas fa-edit"></i> Sửa
+                    </a>
+                    <a href="/delete/{{task.id}}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa không?')">
+                        <i class="fas fa-trash"></i> Xóa
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %} 

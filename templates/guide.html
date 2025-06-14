@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}Hướng Dẫn{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="container">
+        <h1 class="page-title">Hướng Dẫn Sử Dụng</h1>
+        <p class="text-muted">Tìm hiểu cách sử dụng 64CLC Task Manager hiệu quả</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Bắt đầu sử dụng -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title h4 mb-4">
+                        <i class="fas fa-rocket text-primary me-2"></i>
+                        Bắt Đầu Sử Dụng
+                    </h2>
+                    <div class="guide-step mb-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <h3 class="h5">1. Đăng Ký Tài Khoản</h3>
+                                <p class="text-muted">Tạo tài khoản mới bằng cách nhấp vào nút "Đăng Ký" và điền thông tin cần thiết.</p>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="{{ url_for('static', filename='images/register.jpg') }}" alt="Đăng ký" class="img-fluid rounded shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="guide-step mb-4">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 order-md-2">
+                                <h3 class="h5">2. Đăng Nhập</h3>
+                                <p class="text-muted">Sử dụng tên đăng nhập và mật khẩu để truy cập vào hệ thống.</p>
+                            </div>
+                            <div class="col-md-6 order-md-1">
+                                <img src="{{ url_for('static', filename='images/login.jpg') }}" alt="Đăng nhập" class="img-fluid rounded shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quản lý công việc -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title h4 mb-4">
+                        <i class="fas fa-tasks text-primary me-2"></i>
+                        Quản Lý Công Việc
+                    </h2>
+                    <div class="guide-step mb-4">
+                        <h3 class="h5">1. Thêm Công Việc Mới</h3>
+                        <p class="text-muted">Nhập nội dung công việc vào ô nhập liệu và nhấn nút "Thêm Công Việc".</p>
+                        <div class="text-center">
+                            <img src="{{ url_for('static', filename='images/add-task.jpg') }}" alt="Thêm công việc" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </div>
+                    <div class="guide-step mb-4">
+                        <h3 class="h5">2. Cập Nhật Trạng Thái</h3>
+                        <p class="text-muted">Nhấn vào nút tích để đánh dấu công việc đã hoàn thành.</p>
+                        <div class="text-center">
+                            <img src="{{ url_for('static', filename='images/update-task.jpg') }}" alt="Cập nhật công việc" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Thống kê -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h2 class="card-title h4 mb-4">
+                        <i class="fas fa-chart-bar text-primary me-2"></i>
+                        Xem Thống Kê
+                    </h2>
+                    <div class="guide-step">
+                        <p class="text-muted">Truy cập trang "Thống Kê" để xem các báo cáo về tiến độ công việc.</p>
+                        <div class="text-center">
+                            <img src="{{ url_for('static', filename='images/stats.jpg') }}" alt="Thống kê" class="img-fluid rounded shadow-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips -->
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title h4 mb-4">
+                        <i class="fas fa-lightbulb text-primary me-2"></i>
+                        Mẹo Sử Dụng
+                    </h2>
+                    <div class="tips-list">
+                        <div class="tip-item mb-3">
+                            <h3 class="h6 mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Cập nhật thường xuyên
+                            </h3>
+                            <p class="text-muted ms-4">Thường xuyên cập nhật trạng thái công việc để theo dõi tiến độ chính xác.</p>
+                        </div>
+                        <div class="tip-item mb-3">
+                            <h3 class="h6 mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Sử dụng thống kê
+                            </h3>
+                            <p class="text-muted ms-4">Xem báo cáo thống kê để đánh giá hiệu suất và cải thiện năng suất.</p>
+                        </div>
+                        <div class="tip-item">
+                            <h3 class="h6 mb-2">
+                                <i class="fas fa-check text-success me-2"></i>
+                                Sao lưu dữ liệu
+                            </h3>
+                            <p class="text-muted ms-4">Định kỳ sao lưu dữ liệu để đảm bảo an toàn thông tin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
