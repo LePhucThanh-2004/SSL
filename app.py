@@ -33,20 +33,6 @@ class Task(db.Model):
     def __repr__(self):
         return f'<Task {self.id}>'
 
-# Khởi tạo database nếu chưa tồn tại
-with app.app_context():
-    db.create_all()
-
-# Tạo tài khoản admin mặc định nếu chưa tồn tại
-if not User.query.filter_by(username='admin').first():
-    admin_user = User(
-        username='admin',
-        password=generate_password_hash('admin123'),
-        email='admin@example.com'
-    )
-    db.session.add(admin_user)
-    db.session.commit()
-
 # Decorator kiểm tra đăng nhập - Bảo vệ các route cần xác thực
 def login_required(f):
     @wraps(f)
@@ -257,4 +243,16 @@ def toggle_status(id):
 # Khởi chạy ứng dụng với chế độ debug
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 10000))
-    app.run(host='0.0.0.0', port=port) 
+    app.run(host='0.0.0.0', port=port)
+
+with app.app_context():
+    db.create_all()
+    # Tạo tài khoản admin mặc định nếu chưa tồn tại
+    if not User.query.filter_by(username='admin').first():
+        admin_user = User(
+            username='admin',
+            password=generate_password_hash('admin123'),
+            email='admin@example.com'
+        )
+        db.session.add(admin_user)
+        db.session.commit() 
